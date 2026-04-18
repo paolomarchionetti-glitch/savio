@@ -1,0 +1,50 @@
+[
+  {
+    "id": "bologna_centro",
+    "display_name": "Bologna — Centro",
+    "cap": "40121",
+    "city": "Bologna"
+  },
+  {
+    "id": "bologna_nord",
+    "display_name": "Bologna — Nord / Corticella",
+    "cap": "40128",
+    "city": "Bologna"
+  },
+  {
+    "id": "bologna_sud",
+    "display_name": "Bologna — Sud / Murri",
+    "cap": "40137",
+    "city": "Bologna"
+  },
+  {
+    "id": "bologna_est",
+    "display_name": "Bologna — Est / San Lazzaro",
+    "cap": "40057",
+    "city": "San Lazzaro di Savena"
+  },
+  {
+    "id": "bologna_ovest",
+    "display_name": "Bologna — Ovest / Casalecchio",
+    "cap": "40033",
+    "city": "Casalecchio di Reno"
+  },
+  {
+    "id": "pesaro_centro",
+    "display_name": "Pesaro — Centro / Baia Flaminia",
+    "cap": "61121",
+    "city": "Pesaro"
+  },
+  {
+    "id": "pesaro_nord",
+    "display_name": "Pesaro — Nord / Muraglia / Tombaccia",
+    "cap": "61122",
+    "city": "Pesaro"
+  },
+  {
+    "id": "pesaro_sud",
+    "display_name": "Pesaro — Sud / Villa Fastiggi / Borgo Santa Maria",
+    "cap": "61122",
+    "city": "Pesaro"
+  }
+]

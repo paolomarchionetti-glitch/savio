@@ -1,0 +1,113 @@
+[
+  {
+    "id": "esselunga_bologna_centro",
+    "name": "Esselunga",
+    "branch": "Via Lame, 69",
+    "chain": "esselunga",
+    "area_id": "bologna_centro",
+    "address": "Via Lame, 69, 40122 Bologna BO",
+    "maps_url": "https://maps.google.com/?q=Esselunga+Via+Lame+Bologna",
+    "leaflet_url": "https://www.esselunga.it/it-it/offerte.html"
+  },
+  {
+    "id": "conad_bologna_centro",
+    "name": "Conad City",
+    "branch": "Via Indipendenza, 33",
+    "chain": "conad",
+    "area_id": "bologna_centro",
+    "address": "Via Indipendenza, 33, 40121 Bologna BO",
+    "maps_url": "https://maps.google.com/?q=Conad+Via+Indipendenza+Bologna",
+    "leaflet_url": "https://www.conad.it/volantini"
+  },
+  {
+    "id": "coop_bologna_centro",
+    "name": "Coop",
+    "branch": "Via Marconi, 28",
+    "chain": "coop",
+    "area_id": "bologna_centro",
+    "address": "Via Marconi, 28, 40122 Bologna BO",
+    "maps_url": "https://maps.google.com/?q=Coop+Via+Marconi+Bologna",
+    "leaflet_url": "https://www.e.coop/volantini"
+  },
+  {
+    "id": "lidl_bologna_centro",
+    "name": "Lidl",
+    "branch": "Via Marco Polo, 1",
+    "chain": "lidl",
+    "area_id": "bologna_centro",
+    "address": "Via Marco Polo, 1, 40131 Bologna BO",
+    "maps_url": "https://maps.google.com/?q=Lidl+Bologna+Marco+Polo",
+    "leaflet_url": "https://www.lidl.it/it/le-nostre-offerte.htm"
+  },
+  {
+    "id": "eurospin_bologna_nord",
+    "name": "Eurospin",
+    "branch": "Via Corticella, 12",
+    "chain": "eurospin",
+    "area_id": "bologna_nord",
+    "address": "Via Corticella, 12, 40128 Bologna BO",
+    "maps_url": "https://maps.google.com/?q=Eurospin+Corticella+Bologna",
+    "leaflet_url": "https://www.eurospin.it/volantino/"
+  },
+  {
+    "id": "esselunga_casalecchio",
+    "name": "Esselunga",
+    "branch": "Via Porrettana, 5 — Casalecchio",
+    "chain": "esselunga",
+    "area_id": "bologna_ovest",
+    "address": "Via Porrettana, 5, 40033 Casalecchio di Reno BO",
+    "maps_url": "https://maps.google.com/?q=Esselunga+Casalecchio",
+    "leaflet_url": "https://www.esselunga.it/it-it/offerte.html"
+  },
+
+  {
+    "id": "conad_pesaro_centro",
+    "name": "Conad Superstore",
+    "branch": "Viale della Vittoria, 130",
+    "chain": "conad",
+    "area_id": "pesaro_centro",
+    "address": "Viale della Vittoria, 130, 61121 Pesaro PU",
+    "maps_url": "https://maps.google.com/?q=Conad+Superstore+Viale+Vittoria+Pesaro",
+    "leaflet_url": "https://www.conad.it/volantini"
+  },
+  {
+    "id": "lidl_pesaro",
+    "name": "Lidl",
+    "branch": "Via Gagarin, 57",
+    "chain": "lidl",
+    "area_id": "pesaro_nord",
+    "address": "Via Gagarin, 57, 61122 Pesaro PU",
+    "maps_url": "https://maps.google.com/?q=Lidl+Via+Gagarin+Pesaro",
+    "leaflet_url": "https://www.lidl.it/it/le-nostre-offerte.htm"
+  },
+  {
+    "id": "carrefour_pesaro",
+    "name": "Carrefour Market",
+    "branch": "Via Togliatti, 52",
+    "chain": "carrefour",
+    "area_id": "pesaro_centro",
+    "address": "Via Togliatti, 52, 61121 Pesaro PU",
+    "maps_url": "https://maps.google.com/?q=Carrefour+Market+Via+Togliatti+Pesaro",
+    "leaflet_url": "https://www.carrefour.it/it/volantino"
+  },
+  {
+    "id": "eurospin_pesaro",
+    "name": "Eurospin",
+    "branch": "Via dell'Industria, 8",
+    "chain": "eurospin",
+    "area_id": "pesaro_nord",
+    "address": "Via dell'Industria, 8, 61122 Pesaro PU",
+    "maps_url": "https://maps.google.com/?q=Eurospin+Via+Industria+Pesaro",
+    "leaflet_url": "https://www.eurospin.it/volantino/"
+  },
+  {
+    "id": "md_pesaro",
+    "name": "MD Discount",
+    "branch": "Via Solferino, 24",
+    "chain": "md",
+    "area_id": "pesaro_sud",
+    "address": "Via Solferino, 24, 61122 Pesaro PU",
+    "maps_url": "https://maps.google.com/?q=MD+Discount+Via+Solferino+Pesaro",
+    "leaflet_url": "https://www.mdspa.it/volantino"
+  }
+]

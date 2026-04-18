@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Backup rules — Android 11 e precedenti
+    Escludiamo il database Room dal backup automatico:
+    i dati seed vengono ricaricati dagli assets al primo avvio.
+    Le preferenze DataStore vengono incluse (zona selezionata, onboarding status).
+-->
+<full-backup-content>
+    <exclude domain="database" path="savio_db" />
+    <exclude domain="database" path="savio_db-shm" />
+    <exclude domain="database" path="savio_db-wal" />
+    <include domain="sharedpref" path="." />
+</full-backup-content>

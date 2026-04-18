@@ -1,0 +1,203 @@
+SAVIO — Struttura file e cartelle
+Progetto Android / Kotlin
+Generata il: Aprile 2026
+Package: com.paolomarchionetti.savio
+Totale file: 52 | Totale cartelle: 45
+================================================================================
+
+savio/
+│
+├── .gitignore
+├── README.md
+├── build.gradle.kts                        ← Plugin declarations root (AGP, Kotlin, Hilt, KSP...)
+├── gradle.properties                       ← JVM args, parallel build, configuration cache
+├── settings.gradle.kts                     ← Nome progetto, include :app, repo management
+│
+├── gradle/
+│   └── libs.versions.toml                  ← Version catalog centralizzato (tutte le dipendenze)
+│
+└── app/
+    ├── build.gradle.kts                    ← Dipendenze, compileSdk, minSdk, buildConfig, proguard
+    ├── proguard-rules.pro                  ← Regole R8: Serialization, Room, Hilt, Compose, Retrofit
+    │
+    └── src/
+        └── main/
+            │
+            ├── AndroidManifest.xml         ← Single Activity, INTERNET only, zero permessi runtime
+            │
+            ├── assets/                     ← JSON seed — aggiornabili senza nuovo APK via CDN
+            │   ├── areas_v1.json           ← 5 aree geografiche Bologna (centro/nord/sud/est/ovest)
+            │   ├── catalog_v1.json         ← 120+ categorie prodotto con alias per normalizzazione
+            │   ├── equivalences_v1.json    ← Regole equivalenza prodotto (es. "acqua naturale" = "acqua liscia")
+            │   ├── offers_current.json     ← ~60 offerte settimana su 5 insegne pilota Bologna
+            │   └── stores_pilot_v1.json    ← 6 supermercati pilota (Esselunga/Conad/Lidl/Coop/Eurospin)
+            │
+            ├── java/com/paolomarchionetti/savio/
+            │   │
+            │   ├── SavioApp.kt             ← Application class (@HiltAndroidApp)
+            │   ├── MainActivity.kt         ← Unica Activity (single-activity arch), enableEdgeToEdge
+            │   │
+            │   ├── core/
+            │   │   ├── common/             ← [cartella riservata] Result.kt, Extensions.kt (da aggiungere)
+            │   │   ├── util/               ← [cartella riservata] DateUtils.kt, PriceFormatter.kt
+            │   │   │
+            │   │   ├── designsystem/
+            │   │   │   ├── Color.kt        ← Palette completa: verde petrolio, ambra, neutri, semantici
+            │   │   │   ├── Typography.kt   ← 8 stili testo (headlineLarge → labelSmall)
+            │   │   │   ├── Theme.kt        ← SavioTheme: light/dark scheme, MaterialTheme wrapper
+            │   │   │   └── components/
+            │   │   │       └── SavioComponents.kt  ← CoverageBadge, ConfidenceBadge,
+            │   │   │                               │   DataFreshnessLabel, SavioPrimaryButton,
+            │   │   │                               │   SavioSecondaryButton, EmptyState
+            │   │   │
+            │   │   └── navigation/
+            │   │       ├── AppDestination.kt       ← Sealed class: rotte type-safe (6 destinazioni)
+            │   │       └── AppNavGraph.kt          ← NavHost completo: Onboarding→Area→List→Results→Detail
+            │   │
+            │   ├── data/
+            │   │   │
+            │   │   ├── assets/
+            │   │   │   ├── AssetDataSource.kt      ← Legge JSON da assets/, fallback silenzioso su errore
+            │   │   │   └── dto/
+            │   │   │       └── Dtos.kt             ← AreaDto, StoreDto, ProductCategoryDto,
+            │   │   │                                   OfferDto, EquivalenceDto (@Serializable)
+            │   │   │
+            │   │   ├── local/
+            │   │   │   ├── dao/
+            │   │   │   │   └── Daos.kt             ← ShoppingListDao (con @Transaction saveListWithItems),
+            │   │   │   │                               StoreDao, OfferDao (JOIN area/store),
+            │   │   │   │                               ShoppingListWithItems (@Relation)
+            │   │   │   ├── datastore/
+            │   │   │   │   └── UserPreferencesDataStore.kt  ← onboardingDone, selectedAreaId,
+            │   │   │   │                                        activeListId, lastSyncEpoch
+            │   │   │   ├── db/
+            │   │   │   │   └── AppDatabase.kt      ← @Database: 4 entity, versione 1, exportSchema=true
+            │   │   │   └── entity/
+            │   │   │       └── Entities.kt         ← ShoppingListEntity, ShoppingListItemEntity,
+            │   │   │                                   StoreEntity, OfferEntity (con ForeignKey + Index)
+            │   │   │
+            │   │   ├── mapper/
+            │   │   │   └── Mappers.kt              ← Conversioni bidirezionali: DTO↔Entity↔Domain
+            │   │   │
+            │   │   └── repository/
+            │   │       └── RepositoryImpls.kt      ← ShoppingListRepositoryImpl, StoreRepositoryImpl,
+            │   │                                       OfferRepositoryImpl (con fallback asset→DB,
+            │   │                                       catalogCache in-memory, cleanExpiredOffers)
+            │   │
+            │   ├── domain/
+            │   │   ├── model/
+            │   │   │   └── Models.kt               ← Area, Store, ProductCategory, Offer,
+            │   │   │                                   ShoppingList, ShoppingListItem, BasketEstimate,
+            │   │   │                                   CoveredItem, OfferSourceType, ConfidenceLevel
+            │   │   ├── repository/
+            │   │   │   └── Repositories.kt         ← Interfacce: ShoppingListRepository,
+            │   │   │                                   StoreRepository, OfferRepository
+            │   │   └── usecase/
+            │   │       ├── GetBestStoreForListUseCase.kt  ← MOTORE DI RANKING: formula score con
+            │   │       │                                      penalità copertura/equivalenza,
+            │   │       │                                      bonus freschezza, soglia MIN 40%
+            │   │       └── UseCases.kt             ← GetAllShoppingLists, SaveShoppingList,
+            │   │                                       DeleteShoppingList, GetActiveShoppingList,
+            │   │                                       GetAllAreas, GetStoresInArea,
+            │   │                                       SearchProductCategory, SyncRemoteData,
+            │   │                                       createNewShoppingList(), createShoppingListItem()
+            │   │
+            │   ├── di/
+            │   │   └── Modules.kt                  ← DatabaseModule (Room), RepositoryModule (Binds)
+            │   │
+            │   └── feature/
+            │       ├── onboarding/
+            │       │   ├── OnboardingScreen.kt     ← HorizontalPager 3 pagine, indicatori animati,
+            │       │   │                               bottoni Avanti/Salta/Inizia
+            │       │   └── OnboardingViewModel.kt  ← setOnboardingDone() via DataStore
+            │       │
+            │       ├── area/
+            │       │   ├── AreaSelectionScreen.kt  ← Ricerca CAP/città, AreaCard con selezione,
+            │       │   │                               bottone Conferma zona
+            │       │   └── AreaSelectionViewModel.kt  ← filteredAreas per query, confirmArea()
+            │       │
+            │       ├── shoppinglist/
+            │       │   ├── ShoppingListScreen.kt   ← AddItemField con SuggestionChip,
+            │       │   │                               LazyColumn items, FAB "Dove conviene?"
+            │       │   ├── ShoppingListViewModel.kt ← debounce 300ms autocomplete, persistList(),
+            │       │   │                               addItem / removeItem / addFromSuggestion
+            │       │   └── components/             ← [cartella riservata] componenti locali futuri
+            │       │
+            │       ├── results/
+            │       │   ├── ResultsScreen.kt        ← StoreRankingCard, DataFreshnessLabel,
+            │       │   │                               disclaimer, MethodologyBottomSheet
+            │       │   ├── ResultsViewModel.kt     ← runRanking() via GetBestStoreForListUseCase,
+            │       │   │                               stato loading/error/estimates
+            │       │   └── components/             ← [cartella riservata] componenti locali futuri
+            │       │
+            │       ├── storedetail/
+            │       │   ├── StoreDetailScreen.kt    ← Info negozio, link Maps e volantino,
+            │       │   │                               nota trasparenza
+            │       │   └── StoreDetailViewModel.kt ← SavedStateHandle per storeId, carica Store
+            │       │
+            │       └── settings/
+            │           └── SettingsScreen.kt       ← Privacy Policy, T&C, Valuta, Feedback,
+            │                                           nota "zero dati personali"
+            │
+            └── res/
+                ├── drawable/               ← [cartella riservata] icone vettoriali future
+                ├── mipmap-hdpi/            ← [cartella riservata] launcher icon future
+                │
+                ├── values/
+                │   ├── colors.xml          ← 4 colori brand (usati da XML prima di Compose)
+                │   ├── strings.xml         ← 50+ stringhe localizzate (IT), accessibilità inclusa
+                │   └── themes.xml          ← Tema XML minimo (splash + status bar trasparente)
+                │
+                └── xml/
+                    ├── backup_rules.xml            ← Esclude DB Room dal backup, include DataStore
+                    ├── data_extraction_rules.xml   ← Android 12+: stessa logica backup_rules
+                    └── network_security_config.xml ← Solo HTTPS, nessun cleartext, debug override
+
+
+================================================================================
+LEGENDA CARTELLE RISERVATE
+================================================================================
+
+Le cartelle marcate [cartella riservata] sono create e pronte nella struttura
+ma non contengono ancora file Kotlin. Sono placeholder per le versioni future:
+
+  core/common/          → Result<T> sealed class, extensions Kotlin generiche
+  core/util/            → DateUtils (formattazione date IT), PriceFormatter (€ format)
+  feature/shoppinglist/components/  → ItemCard animata, QuantitySelector
+  feature/results/components/       → MiniStoreCard per split multi-negozio (v2.0)
+  res/drawable/         → ic_store_esselunga.svg, ic_store_lidl.svg, ecc.
+  res/mipmap-*/         → Launcher icon Savio (tutte le density)
+
+
+================================================================================
+FILE DA AGGIUNGERE PRIMA DEL PRIMO BUILD
+================================================================================
+
+  1. res/mipmap-*/ic_launcher.png + ic_launcher_round.png
+     → Obbligatori per compilare: Android Studio li genera automaticamente
+       tramite Image Asset Studio (tasto destro su res → New → Image Asset)
+
+  2. local.properties (NON in git)
+     → sdk.dir=/Users/TUONOME/Library/Android/sdk
+       (generato automaticamente da Android Studio all'apertura del progetto)
+
+  3. google-services.json (NON in git, opzionale in MVP)
+     → Necessario solo se si decommentano Firebase Crashlytics/Analytics
+       in app/build.gradle.kts. Non serve per il primo build.
+
+
+================================================================================
+COME APRIRE IL PROGETTO
+================================================================================
+
+  1. Decomprimi savio_android_project.zip
+  2. Apri Android Studio → File → Open → seleziona la cartella savio/
+  3. Attendi sync Gradle (scarica ~200MB di dipendenze al primo avvio)
+  4. Crea le icone launcher: res → New → Image Asset → Text "S" colore verde
+  5. Run → seleziona emulatore o device fisico
+  6. L'app si avvia su OnboardingScreen, poi AreaSelection con Bologna disponibile
+
+
+================================================================================
+Savio v1.0 — Aprile 2026 — com.paolomarchionetti.savio
+================================================================================

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colori brand Savio — usati dal sistema Android prima del caricamento di Compose -->
+    <!-- I colori completi del design system sono in Color.kt -->
+    <color name="savio_green_700">#1B6E50</color>
+    <color name="savio_green_100">#D1F0E4</color>
+    <color name="savio_neutral_050">#F4F7F5</color>
+    <color name="white">#FFFFFF</color>
+</resources>

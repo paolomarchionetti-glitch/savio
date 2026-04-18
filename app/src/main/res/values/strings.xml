@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Savio</string>
+    <string name="app_tagline">La spesa intelligente</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_skip">Salta</string>
+    <string name="onboarding_next">Avanti</string>
+    <string name="onboarding_start">Inizia a risparmiare</string>
+
+    <!-- Area selection -->
+    <string name="area_title">Dove fai la spesa?</string>
+    <string name="area_subtitle">Seleziona la tua zona. Nessun permesso di posizione richiesto.</string>
+    <string name="area_search_hint">CAP o città</string>
+    <string name="area_confirm">Conferma zona</string>
+    <string name="area_not_found">Nessuna zona trovata. L\'app è disponibile a Bologna per ora.</string>
+
+    <!-- Shopping list -->
+    <string name="list_title">La mia lista</string>
+    <string name="list_empty_title">Lista vuota</string>
+    <string name="list_empty_subtitle">Aggiungi quello che vuoi comprare.\nAnche solo \'acqua\' o \'pane integrale\'.</string>
+    <string name="list_add_hint">Aggiungi prodotto</string>
+    <string name="list_add_placeholder">es. latte, pasta barilla 500g…</string>
+    <string name="list_compare_cta">Dove conviene?</string>
+
+    <!-- Results -->
+    <string name="results_title">Dove conviene</string>
+    <string name="results_loading">Sto confrontando i supermercati…</string>
+    <string name="results_empty_title">Nessun risultato</string>
+    <string name="results_empty_subtitle">Nessun supermercato con dati sufficienti per la tua zona. Riprova con una lista più semplice.</string>
+    <string name="results_disclaimer">Stima basata sui dati coperti nell\'area selezionata. I prezzi reali possono variare. Le offerte potrebbero richiedere carta fedeltà.</string>
+    <string name="results_methodology_title">Come funziona la stima</string>
+    <string name="results_basket_estimate">stima carrello</string>
+
+    <!-- Store detail -->
+    <string name="store_open_maps">Apri in Maps</string>
+    <string name="store_view_leaflet">Vedi volantino ufficiale</string>
+    <string name="store_transparency_note">I prezzi mostrati sono stime basate su offerte volantino e contributi utenti verificati. Verifica sempre il prezzo in negozio.</string>
+
+    <!-- Badges -->
+    <string name="badge_coverage">%d%% coperta</string>
+    <string name="badge_confidence_high">Affidabilità: Alta</string>
+    <string name="badge_confidence_medium">Affidabilità: Media</string>
+    <string name="badge_confidence_low">Affidabilità: Bassa</string>
+    <string name="badge_data_freshness">Dati aggiornati al %s</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Impostazioni</string>
+    <string name="settings_privacy">Privacy Policy</string>
+    <string name="settings_privacy_sub">Come trattiamo i tuoi dati</string>
+    <string name="settings_terms">Termini e Condizioni</string>
+    <string name="settings_rate">Valuta Savio</string>
+    <string name="settings_rate_sub">Su Google Play Store</string>
+    <string name="settings_feedback">Invia feedback</string>
+    <string name="settings_version_note">Nessun dato personale raccolto. Nessun account richiesto.</string>
+
+    <!-- Errors -->
+    <string name="error_ranking">Errore nel calcolo. Riprova.</string>
+    <string name="error_retry">Riprova</string>
+
+    <!-- Accessibility -->
+    <string name="cd_back">Indietro</string>
+    <string name="cd_settings">Impostazioni</string>
+    <string name="cd_info">Come funziona</string>
+    <string name="cd_add_item">Aggiungi</string>
+    <string name="cd_remove_item">Rimuovi</string>
+    <string name="cd_location">Posizione</string>
+</resources>

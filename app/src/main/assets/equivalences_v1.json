@@ -1,0 +1,12 @@
+[
+  { "category_id": "acqua_naturale_15l",      "aliases": ["acqua naturale", "acqua liscia 1.5", "acqua senza gas bottiglia", "acqua lt 1.5", "acqua naturale grande"] },
+  { "category_id": "pasta_spaghetti_500g",    "aliases": ["spaghetti barilla", "spaghetti n.5", "spaghetti pasta lunga 500", "linguine 500g"] },
+  { "category_id": "pasta_penne_500g",        "aliases": ["penne rigate 500", "penne lisce", "rigatoni 500g", "maccheroni 500g", "pasta corta 500"] },
+  { "category_id": "olio_extravergine_750ml", "aliases": ["olio evo bottiglia 750", "extravergine 75cl", "olio oliva evo 750ml"] },
+  { "category_id": "latte_intero_1l",         "aliases": ["latte fresco intero", "latte uht 1l", "latte bianco intero litro"] },
+  { "category_id": "pelati_400g",             "aliases": ["pomodori pelati 400", "pelati scatoletta", "pelati 4/4"] },
+  { "category_id": "mele_1kg",               "aliases": ["mele sfuse 1kg", "mela golden kg", "mele fuji sacchetto", "mele rete 1kg"] },
+  { "category_id": "petto_pollo_500g",        "aliases": ["petto pollo fresco 500", "fettine petto pollo", "pollo fettine 500g"] },
+  { "category_id": "carta_igienica_8rt",      "aliases": ["carta igienica 8 rotoli", "8 rotoli bagno", "carta wc 8pz"] },
+  { "category_id": "caffe_moka_250g",         "aliases": ["caffè macinato 250g", "moka caffè 250", "caffè 250 grammi"] }
+]

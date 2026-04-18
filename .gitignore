@@ -1,0 +1,27 @@
+# Android
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+
+# Kotlin
+*.class
+
+# Google services (NON committare mai)
+google-services.json
+
+# Keystore (MAI in repo)
+*.jks
+*.keystore
+keystore.properties
+
+# Output
+app/release/

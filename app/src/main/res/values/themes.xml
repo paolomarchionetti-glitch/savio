@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema base — la personalizzazione visiva vera avviene in SavioTheme.kt (Compose) -->
+    <!-- Questo tema minimo serve solo per lo splash e per la status bar prima che Compose prenda il controllo -->
+    <style name="Theme.Savio" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

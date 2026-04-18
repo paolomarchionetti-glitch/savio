@@ -1,0 +1,117 @@
+name: Savio — Aggiornamento automatico offerte (Gemini)
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # ogni lunedì 06:00 UTC = 08:00 ora italiana
+
+  workflow_dispatch:
+    inputs:
+      stores:
+        description: "Insegne da aggiornare (blank = tutte)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Dry run — non committare"
+        type: boolean
+        default: false
+
+jobs:
+  update-offers:
+    name: Scarica volantini e aggiorna JSON
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Installa dipendenze
+        run: pip install -r scripts/requirements.txt
+
+      - name: Aggiorna offerte con Gemini 2.5 Flash
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.stores }}" ]; then
+            ARGS="--store ${{ github.event.inputs.stores }}"
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python3 scripts/savio_update_offers.py $ARGS
+
+      - name: Verifica modifiche JSON
+        id: diff_check
+        run: |
+          CHANGED=$(git diff --name-only app/src/main/assets/offers_current.json | wc -l)
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Valida JSON prodotto
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+
+          with open("app/src/main/assets/offers_current.json") as f:
+            offers = json.load(f)
+          with open("app/src/main/assets/catalog_v1.json") as f:
+            catalog = {c["id"] for c in json.load(f)}
+          with open("app/src/main/assets/stores_pilot_v1.json") as f:
+            stores = {s["id"] for s in json.load(f)}
+
+          errors = []
+          ids_seen = set()
+          for o in offers:
+            if o["id"] in ids_seen:
+              errors.append(f"ID duplicato: {o['id']}")
+            ids_seen.add(o["id"])
+            if o["store_id"] not in stores:
+              errors.append(f"store_id non valido: {o['store_id']}")
+            if o["product_category_id"] not in catalog:
+              errors.append(f"category non valida: {o['product_category_id']}")
+            if not (0.05 <= o["price_eur"] <= 500):
+              errors.append(f"Prezzo anomalo: {o['price_eur']} ({o['id']})")
+
+          if errors:
+            print("❌ Errori di validazione:")
+            for e in errors: print(" -", e)
+            sys.exit(1)
+          else:
+            print(f"✅ JSON valido — {len(offers)} offerte, nessun errore")
+          EOF
+
+      - name: Commit e push
+        if: steps.diff_check.outputs.changed != '0' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name  "Savio Bot"
+          git config user.email "bot@savio.app"
+          git add app/src/main/assets/offers_current.json
+          WEEK=$(date +"%Y-W%V")
+          COUNT=$(python3 -c "import json; print(len(json.load(open('app/src/main/assets/offers_current.json'))))")
+          git commit -m "chore(data): offerte settimana $WEEK — $COUNT voci [Gemini]"
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Riepilogo aggiornamento offerte (Gemini 2.5 Flash)" >> $GITHUB_STEP_SUMMARY
+          python3 - >> $GITHUB_STEP_SUMMARY <<'EOF'
+          import json
+          from collections import Counter
+          with open("app/src/main/assets/offers_current.json") as f:
+            offers = json.load(f)
+          by_store = Counter(o["store_id"] for o in offers)
+          print(f"**Totale**: {len(offers)} offerte\n")
+          print("| Negozio | Offerte |")
+          print("|---------|---------|")
+          for s, n in sorted(by_store.items()):
+            print(f"| {s} | {n} |")
+          EOF

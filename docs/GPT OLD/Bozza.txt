@@ -1,0 +1,5 @@
+Creare un app per Android (successivamente per IOS), che permetta all'utente che la scarica, di risparmiare sulla spesa quotidiana.
+Come fare? L'utente, con funzioni free e premium, dice all'app cosa vuole comprare (es, mele, biscotti di un certo tipo, carne , acqua, etc..).
+L'app gli dice in automatico in che supermercato cercare confrontando offerte e prezzi (da capire come poiché l'utilizzo AI è infattibile).
+All'utente si garantisce un risparmio mensile di tipo 50 euro e magari lui ne spende 1 per l'app.
+Dimmi tutte le modalità, le ripercussioni legali, se si può fare, i permessi, la geolocalizzazione tutto. Fammi un MD dove mi dici tutte le tue idee per un app storica e grandiosa. 
